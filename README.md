@@ -54,7 +54,7 @@ $ rails db:migrate
 
 ## Database
 
-- Generer la database à partir de migrate/seed.rb :
+- Generer la database à partir de ../migrate/seed.rb :
 
 ```ruby
 $ rails db:seed
