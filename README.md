@@ -14,7 +14,7 @@ ruby 2.5.1
 
 https://git.heroku.com/the-gossip-project-pg-crud.git
 
-#Or do like always with this steps :
+# Or do like always with this steps :
 
 ## Git Clone
 
