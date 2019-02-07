@@ -25,7 +25,10 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @gossip = Gossip.new(gossip_params)
+    @anonymous = User.create!(city_id: City.all.sample.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::TvShows::SiliconValley.quote, email: Faker::Internet.email, age: Faker::Number.between(1, 100))
+    puts @anonymous.id
+    puts title:params[:title]
+    @gossip = Gossip.new(user_id: @anonymous.id, city_id: @anonymous.city_id, title:params[:title], content:params[:content])
     if @gossip.save
     puts 'redirect'
     flash[:success] = "Bravo, ton potin a été enregistré"
@@ -34,7 +37,6 @@ class GossipsController < ApplicationController
     puts "doesn't work"
     render :new
     end
-
   end
 
   def update
