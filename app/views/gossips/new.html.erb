@@ -1,2 +1,41 @@
-<h1>Gossips#new</h1>
-<p>Find me in app/views/gossips/new.html.erb</p>
+<h1>Créer votre Gossip</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @gossip do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      <br>
+      <%= f.label :content %>
+      <%= f.text_field :content %>
+      <br>
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <%= f.submit "Create my gossip", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<% if false %>
+   <%= form_tag url_for(action: 'create'), method: "post" do %>
+  
+        <%= label_tag 'Title' %>
+        <%= text_field_tag 'title', @post.title %>
+        <br /> <br />
+  
+        <%= label_tag 'Content' %>
+        <%= text_area_tag 'body', @post.body %>
+        <br /> <br />
+  
+        <%= submit_tag "Create Post" %>
+  
+      <% end %>
+  
+  <% if @gossip_user.errors.any? %>
+    <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+    <ul>
+      <% @gossip_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

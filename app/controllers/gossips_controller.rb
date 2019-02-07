@@ -5,24 +5,51 @@ class GossipsController < ApplicationController
     puts  params[:first_name]
     puts "$" * 60
     @first_name = params[:first_name]
-    @author = User.first.first_name
-    @title = Gossip.first.title
-
-    @array_gossip = Gossip.all
+    @gossips = Gossip.all
   end
 
   def show
     puts "$" * 60
     puts params[:id]
     puts "$" * 60
-    id_params = params[:id].to_i
-    @array_gossip = Gossip.all
-    @gossip = @array_gossip[id_params-1]
+    @gossip = Gossip.find(params[:id])
   end
 
   def new
+    @gossip = Gossip.new
+
+  end
+
+  def edit
+    @gossip = Gossip.find(params[:id])
   end
 
   def create
+    @gossip = Gossip.new(gossip_params)
+    if @gossip.save
+    puts 'redirect'
+    flash[:success] = "Bravo, ton potin a été enregistré"
+    redirect_to @gossip
+    else
+    puts "doesn't work"
+    render :new
+    end
+
   end
+
+  def update
+    @gossip = Gossip.find(params[:id])
+    if @gossip.update(gossip_params)
+      redirect_to @gossip
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @gossip = Gossip.find(params[:id])
+    @gossip.destroy
+    redirect_to gossips_path
+  end
+
 end

@@ -14,8 +14,14 @@ PrivateMessage.destroy_all
 City.destroy_all
 Tag.destroy_all
 User.destroy_all
-puts "Delete from sqlite_sequence..."
 sleep(1)
+puts "Reset PK Sequence"
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+ActiveRecord::Base.connection.reset_pk_sequence!('gossips')
+ActiveRecord::Base.connection.reset_pk_sequence!('private_messages')
+ActiveRecord::Base.connection.reset_pk_sequence!('cities')
+ActiveRecord::Base.connection.reset_pk_sequence!('tags')
+ActiveRecord::Base.connection.reset_pk_sequence!('join_table_tag_gossips')
 
 # ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'gossips'")
 # ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'private_messages'")
@@ -40,7 +46,7 @@ puts "_______________________________"
 puts ""
 
 15.times do 
-  user = User.create!(city_id: City.all.sample.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::SiliconValley.quote, email: Faker::Internet.email, age: Faker::Number.between(1, 100))
+  user = User.create!(city_id: City.all.sample.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::TvShows::SiliconValley.quote, email: Faker::Internet.email, age: Faker::Number.between(1, 100))
   puts ""
   puts "user #{user.first_name} #{user.last_name} is #{user.age} yo"
   sleep(0.05)
@@ -55,7 +61,7 @@ puts "_______________________________"
 puts ""
 
 20.times do 
-  gossip = Gossip.create!(user_id: User.all.sample.id, title: Faker::Hipster.sentence(3), content: Faker::TvShows::Community.quotes)
+  gossip = Gossip.create!(user_id: User.all.sample.id, title: Faker::Hipster.word, content: Faker::TvShows::MichaelScott.quote)
   puts "User #{gossip.user_id} post :"
   puts "title : #{gossip.title}"
   puts "~~~~~~~~~~~~~"
