@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_save {  |user| user.email = email.downcase }
   validates :first_name, 
     presence: true, 
     length: { in: 2..14 }
@@ -14,6 +15,10 @@ class User < ApplicationRecord
   validates :description, 
     presence: true, 
     length: { maximum: 500 }
+  validates :password, 
+    presence: true,
+    length: { minimum: 6 }
+  validates :password_confirmation, presence: true
 
   belongs_to :city
   has_many :gossips
