@@ -2,7 +2,7 @@
 
 # GOSSIP PROJECT qui suit la convention CRUD et REST avec BDD Postgresql et mis en ligne sur Heroku
 
-~~ Cynthia @Yacinth
+~~ Cynthia @Yacinth ~~ William @Willyspa ~~ Aliya @A1iya
 
 ## Ruby version
 
