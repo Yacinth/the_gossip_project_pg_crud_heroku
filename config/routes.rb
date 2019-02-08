@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'cities/show'
   root 'gossips#index'
   get 'welcome/:first_name', to: 'index#show'
   get 'static_pages/team'
@@ -8,5 +7,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :new, :create]
   resources :gossips, only: [:index,:show, :new, :create]
   resources :cities, only: [:show]
+  resources :sessions, only: [:destroy, :create, :new]
 
 end

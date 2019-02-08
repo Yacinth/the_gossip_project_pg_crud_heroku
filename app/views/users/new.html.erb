@@ -17,16 +17,16 @@
   </div>
   <div class="col-lg-8 offset-lg-2 firm-group">
     <%= label_tag 'Password' %>
-    <%= text_field_tag 'password', @user.password, class: "form-control", placeholder: "Enter your last name" %>
+    <%= text_field_tag 'password', @user.password, class: "form-control", placeholder: "Enter your password" %>
   </div>
   <div class="col-lg-8 offset-lg-2 firm-group">
     <%= label_tag 'Password Confirmation' %>
-    <%= text_field_tag 'password_confirmation', @user.password_confirmation, class: "form-control", placeholder: "Enter your last name" %>
+    <%= text_field_tag 'password_confirmation', @user.password_confirmation, class: "form-control", placeholder: "Confirm your password" %>
   </div>
   <br>
   <div class="d-flex justify-content-center">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <%= submit_tag "Create Gossip", class: "btn btn-primary"%>
+    <%= submit_tag "Create", class: "btn btn-primary"%>
   </div>
 <% end %>
   

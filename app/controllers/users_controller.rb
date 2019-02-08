@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(description: Faker::TvShows::SiliconValley.quote, city_id: City.all.sample.id, first_name:params[:first_name], last_name:params[:last_name], email:params[:email], age: Faker::Number.between(1, 100), password:params[:password], password_confirmation:params[:password_confirmation])
     if @user.save
-      redirect_to @user
+      redirect_to(root_path)
     else
       render :new
     end
