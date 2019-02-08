@@ -12,7 +12,7 @@ ruby 2.5.1
 
 # Got to Heroku website
 
-https://the-gossip-project-pg-crud.herokuapp.com/
+https://the-gossip-project-pg-crud-2.herokuapp.com/
 
 # Or do like always with this steps :
 
