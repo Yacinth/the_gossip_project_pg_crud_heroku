@@ -1,10 +1,13 @@
+<div class="container">
 <h1>Créer votre Gossip</h1>
-
+</div>
+<br>
 <%= form_tag url_for(action: 'create'), method: "post" do %>
   <div class="col-lg-8 offset-lg-2 firm-group">
     <%= label_tag 'Title' %>
     <%= text_field_tag 'title', @gossip.title, class: "form-control", placeholder: "Enter gossip's title" %>
   </div>
+  <br>
   <div class="col-lg-8 offset-lg-2 firm-group">
     <%= label_tag 'Content' %>
     <%= text_area_tag 'content', @gossip.content, class: "form-control" %>
