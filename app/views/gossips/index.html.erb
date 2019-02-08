@@ -1,14 +1,42 @@
-<h1>Bienvenue <%= @first_name %> </h1>
-<a style="color: #ff00ff" href="../gossips/new" class="card-link">Créer votre potin</a>
-<p>Voici la liste des potins :</p>
-<% @gossips.each do |i| %>
-
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"><b>Auteur du gossip: </b><%= i.user.first_name %></h5>
-    <h5 class="card-text"><b>Titre du gossip:</b> <%= i.title %></h5>
-    <a style="color: #ff00ff" href="../gossips/<%=i.id%>" class="card-link">En savoir plus...</a>
+<br>
+<div class="container">
+  <div class="card align-items-center">
+    <div style="height: 176px; overflow: hidden">
+    <img  src="https://drscdn.500px.org/photo/283541725/q%3D80_m%3D2000_k%3D1/v2?webp=true&sig=5d0ea49c414dcc05cccf2bba466fee90b4e6a37f2097388defa29e556cceae13" style="width: 100%; margin: -200px 0 0 0">
+    </div>
+    
+    <div class="card-body">
+      <h1 class="card-title ">Bienvenue <%= @first_name %></h1>
+    </div>
+    <a style="color: #ff00ff" href="../gossips/new" class="btn btn-light btn-lg btn-block" role="button" aria-pressed="true">Confesse toi..</a>
+  
   </div>
 </div>
 
+
+
+<div class="container">
+  <br>
+  <h3>Voici la liste des potins :</h3>
+</div>
+
+
+<div class="container">
+
+<% @gossips.each do |i| %>
+
+<div class="list-group">
+  <a href="../gossips/<%=i.id%>" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><%= i.user.first_name %> a dit :</h5>
+  
+    </div>
+    <p class="mb-1"><%= i.title.capitalize %></p>
+    <small style="color: #ff00ff" >En savoir plus...</small>
+  </a>
+  
+  
 <%end%>
+</div>
+
+
