@@ -46,7 +46,8 @@ puts "_______________________________"
 puts ""
 
 15.times do 
-  user = User.create!(city_id: City.all.sample.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::TvShows::SiliconValley.quote, email: Faker::Internet.email, age: Faker::Number.between(1, 100))
+  mdp = Faker::Internet.password(8)
+  user = User.create!(password: mdp, password_confirmation: mdp, city_id: City.all.sample.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::TvShows::SiliconValley.quote, email: Faker::Internet.email, age: Faker::Number.between(1, 100))
   puts ""
   puts "user #{user.first_name} #{user.last_name} is #{user.age} yo"
   sleep(0.05)
@@ -61,7 +62,9 @@ puts "_______________________________"
 puts ""
 
 20.times do 
+  
   gossip = Gossip.create!(user_id: User.all.sample.id, city_id: City.all.sample.id, title: Faker::Hipster.word, content: Faker::TvShows::MichaelScott.quote)
+  
   puts "User #{gossip.user_id} post :"
   puts "title : #{gossip.title}"
   puts "~~~~~~~~~~~~~"
