@@ -3,8 +3,10 @@
 <p><b>Titre du Gossip: </b><%= @gossip.title %><br>
 <b>Contenu: </b><%= @gossip.content %></p>
 <p><a href="../users/<%=@gossip.user.id %>">Voir le profil de <%= @gossip.user.first_name %></a> </p>
+<% if User.find_by(id: session[:user_id]) == @gossip.user.id%>
 <p><a href="../gossips/<%=@gossip.id%>/edit">Editer le gossip <%= @gossip.title %></a> </p>
 <p><a href= "<%=gossip_path(@gossip.id)%>" data-method="DELETE">détruire le gossip </a> </p>
+<%end%>
 
 <br>
   <div class="col-lg-8 offset-lg-2 firm-group">

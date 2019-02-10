@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+    before_action :authenticate_user
+  include CommentHelper
 
   def create
     puts params
@@ -13,8 +15,19 @@ class CommentsController < ApplicationController
   end
 
   def update
+    @comment = Comment.find(params[:id])
+    if @comment.update(comment_params) &&  User.find_by(id: session[:user_id]).id == params[:id] 
+      redirect_to @gossip
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+    if who_i_am(params[:id])
+      @comment.destroy
+    end
+    redirect_to gossips_path
   end
 end

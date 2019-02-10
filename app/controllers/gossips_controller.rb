@@ -45,7 +45,9 @@ class GossipsController < ApplicationController
 
   def update
     @gossip = Gossip.find(params[:id])
-    if @gossip.update(gossip_params)
+    puts who_i_am(params[:id])
+    if @gossip.update(gossip_params) && who_i_am(params[:id]) 
+
       redirect_to @gossip
     else
       render :edit
@@ -54,7 +56,9 @@ class GossipsController < ApplicationController
 
   def destroy
     @gossip = Gossip.find(params[:id])
+    if who_i_am(params[:id])  
     @gossip.destroy
+    end
     redirect_to gossips_path
   end
 
