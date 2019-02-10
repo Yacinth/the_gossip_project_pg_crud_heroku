@@ -7,4 +7,5 @@ class Gossip < ApplicationRecord
   belongs_to :city
   has_many :join_table_tag_gossips
   has_many :tags, through: :join_table_tag_gossips
+  has_many :comments
 end

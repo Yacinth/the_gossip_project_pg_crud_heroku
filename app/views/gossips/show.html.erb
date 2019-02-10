@@ -3,4 +3,36 @@
 <p><b>Titre du Gossip: </b><%= @gossip.title %><br>
 <b>Contenu: </b><%= @gossip.content %></p>
 <p><a href="../users/<%=@gossip.user.id %>">Voir le profil de <%= @gossip.user.first_name %></a> </p>
+<p><a href="../gossips/<%=@gossip.id%>/edit">Editer le gossip <%= @gossip.title %></a> </p>
+<p><a href= "<%=gossip_path(@gossip.id)%>" data-method="DELETE">détruire le gossip </a> </p>
+
+<br>
+  <div class="col-lg-8 offset-lg-2 firm-group">
+<h1>Commenter</h1>
+</div>
+<br>
+<%= form_tag({controller: "comments", action: "create"}, method: "post") do %>
+  <div class="col-lg-8 offset-lg-2 firm-group">
+    <%= label_tag 'Content' %>
+    <%= text_area_tag 'content', @comment.content, class: "form-control" %>
+  </div>
+  <br>
+  <div class="d-flex justify-content-center">
+    <input type='hidden' name='gossip_id' value='<%= @gossip.id%>'>
+    <input type='hidden' name='user_id' value='1'>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <%= submit_tag "Create comment", class: "btn btn-primary"%>
+  </div>
+<% end %>
+
+<% @gossip.comments.each do |i| %>
+
+<div class="list-group">
+      <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><%= i.user.first_name %> a dit :</h5>
+  
+    </div>
+    <p class="mb-1"><%= i.content.capitalize %></p>
+  
+<%end%>
 </div>

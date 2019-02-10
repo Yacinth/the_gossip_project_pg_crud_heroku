@@ -10,8 +10,9 @@
     </div>
   
   </div>
+      <% if User.find_by(id: session[:user_id]) %>
       <a style="color: #ff00ff" href="../gossips/new" class="btn btn-light btn-lg btn-block" role="button" aria-pressed="true">Confesse toi..</a>
-
+      <%end%>
 </div>
 
 

@@ -62,8 +62,8 @@ puts "_______________________________"
 puts ""
 
 20.times do 
-  
-  gossip = Gossip.create!(user_id: User.all.sample.id, city_id: City.all.sample.id, title: Faker::Hipster.word, content: Faker::TvShows::MichaelScott.quote)
+  user = User.all.sample
+  gossip = Gossip.create!(user_id: user.id, city_id: user.city_id, title: Faker::Hipster.word, content: Faker::TvShows::MichaelScott.quote)
   
   puts "User #{gossip.user_id} post :"
   puts "title : #{gossip.title}"

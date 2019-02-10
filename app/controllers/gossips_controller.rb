@@ -1,4 +1,6 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, except: [:index]
+
   def index
     puts "$" * 60
     puts "Voici le message de l'URL :"
@@ -13,6 +15,8 @@ class GossipsController < ApplicationController
     puts params[:id]
     puts "$" * 60
     @gossip = Gossip.find(params[:id])
+    @comment = Comment.new
+    @gossip_comments = Gossip.find(params[:id]).comments
   end
 
   def new
@@ -25,11 +29,10 @@ class GossipsController < ApplicationController
   end
 
   def create
-    mdp = Faker::Internet.password(8)
-    @anonymous = User.create!(password: mdp, password_confirmation: mdp, city_id: City.all.sample.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::TvShows::SiliconValley.quote, email: Faker::Internet.email, age: Faker::Number.between(1, 100))
-    puts @anonymous.id
+    id = session[:user_id]
+    @user = User.find(id)
     puts title:params[:title]
-    @gossip = Gossip.new(user_id: @anonymous.id, city_id: @anonymous.city_id, title:params[:title], content:params[:content])
+    @gossip = Gossip.new(user_id: @user.id, city_id: @user.city_id, title:params[:title], content:params[:content])
     if @gossip.save
     puts 'redirect'
     flash[:success] = "Bravo, ton potin a été enregistré"
